@@ -25,8 +25,6 @@ fruits_to_show = my_fruit_list.loc[fruits_selected]
 # Display the table on the page.
 streamlit.dataframe(fruits_to_show)
 
-
-
 #New section for Fruityvice api response
 streamlit.header("Fruityvice Fruit Advice!")
 try:
@@ -38,15 +36,8 @@ try:
    fruityvice_response = requests.get("https://fruityvice.com/api/fruit/"+fruit_choice)
    fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
    streamlit.dataframe(fruityvice_normalized)
-   
 except URLError as e:
    streamlit.error()
-
-# Take the json version of the response and normalize it 
-fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
-
-# output it the screen of the table
-streamlit.dataframe(fruityvice_normalized)
 
 #Dont run anything past here while troubleshooting
 streamlit.stop();
